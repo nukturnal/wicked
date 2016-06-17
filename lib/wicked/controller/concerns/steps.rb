@@ -47,6 +47,12 @@ module Wicked::Controller::Concerns::Steps
     (current_step_index + 1)  == step_index_for(step_name)
   end
 
+  # will return true if the current step is the last step
+  def last_step?
+    return false unless current_and_given_step_exists?(step)
+    steps.last == step
+  end
+
   module ClassMethods
     def steps(*args)
       options = args.extract_options!
